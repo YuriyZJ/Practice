@@ -13,20 +13,15 @@ public class Librarian extends User implements ILoanable {
     @Override
     public void borrowBook(String title, User user) throws BookNotAvailableException {
         Library library = Library.getInstance();
-        Book book = library.borrowBook(title);
-        if (book != null) {
-            System.out.println("Выдана книга: " + book.getTitle());
+        Book book = library.getBook(title);
+        if (book != null && book.isAvailable()) {
+            book.setAvailable(false);
+            System.out.println(user.getName() + " borrowed the book: " + title);
         } else {
             throw new BookNotAvailableException("Book '" + title + "' is not available.");
         }
     }
 
-    @Override
-    public void returnBook(String title, User user) {
-
-    }
-}
-/*
     @Override
     public void returnBook(String title, User user) {
         Library library = Library.getInstance();
@@ -35,33 +30,6 @@ public class Librarian extends User implements ILoanable {
             book.setAvailable(true);
             System.out.println(user.getName() + " returned the book: " + title);
         }
-
-
-
-
-
-
-
-
-    // Метод для добавления книги
-    public void addBook(Book book) {
-        library.addBook(book);
-        System.out.println("Библиотекарь добавил книгу: " + book.getTitle());
     }
-
-    // Метод для выдачи книги
-    public void borrowBook(String title) {
-        Book book = library.borrowBook(title);
-        if (book != null) {
-            System.out.println("Выдана книга: " + book.getTitle());
-        } else {
-            System.out.println("Книга с названием '" + title + "' не найдена в библиотеке.");
-        }
-    }
-
-    // Метод для возврата книги
-    public void returnBook(Book book) {
-        library.returnBook(book);
-        System.out.println("Книга '" + book.getTitle() + "' возвращена в библиотеку.");
-    }*/
+}
 

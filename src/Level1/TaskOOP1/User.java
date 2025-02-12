@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class User {
     private int ID;
-    private String nameU;
+    private String name;
 
     public User(){
 
@@ -12,7 +12,7 @@ public class User {
 
     public User(int ID, String name){
         this.ID = ID;
-        this.nameU = name;
+        this.name = name;
     }
 
     public int getID(){
@@ -23,23 +23,23 @@ public class User {
         this.ID = ID;
     }
 
-    public String getNameU() {
-        return nameU;
+    public String getName() {
+        return name;
     }
 
-    public void setNameU(String nameU) {
-        this.nameU = nameU;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return ID == user.ID && Objects.equals(nameU, user.nameU);
+        return ID == user.ID && Objects.equals(name, user.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, nameU);
+        return Objects.hash(ID, name);
     }
 }

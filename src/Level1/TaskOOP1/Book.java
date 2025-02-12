@@ -6,6 +6,7 @@ public class Book {
     private String title;
     private String author;
     private int ISBN;
+    private boolean isAvailable = true;
 
     public Book(){
 
@@ -39,6 +40,12 @@ public class Book {
 
     public void setISBN(int ISBN) {
         this.ISBN = ISBN;
+    }
+
+    public boolean isAvailable() { return isAvailable; }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 
     @Override

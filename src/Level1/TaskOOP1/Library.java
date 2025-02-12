@@ -8,11 +8,12 @@ public class Library {
     private Map<String, Book> books = new HashMap<>();
 
     // Приватный конструктор запрещает создание объектов извне
-    private Library() {}
+    private Library() {
+    }
 
     //паттерн Singleton (Одиночка) - Этот метод гарантирует, что в программе будет существовать только один объект библиотеки (экземпляр).
-    public static Library getInstance(){
-        if (instance == null){ //Проверяем, существует ли уже объект Library.
+    public static Library getInstance() {
+        if (instance == null) { //Проверяем, существует ли уже объект Library.
             instance = new Library(); // Если instance == null, создаем новый объект Library.
         }
         return instance;
@@ -22,22 +23,11 @@ public class Library {
     //методы по управлению книгами принадлежат библиотеке.
 
     //Метод принимает объект Book
-    public void addBook(Book book){
+    public void addBook(Book book) {
         books.put(book.getTitle(), book); // на HashMap вызывается метод put, который ложит новый объект в коллекцию (Ключ → метод book.getTitle() для получения названия книги и объект Book)
     }
 
-    // Метод для выдачи книги
-    public Book borrowBook(String title){
-        return books.remove(title); // Удаляем книгу из библиотеки
-    }
-
-    // Метод для возврата книги в библиотеку
-    public void returnBook(Book book){
-        books.put(book.getTitle(), book);
-    }
-
-    // Метод для получения книги по названию
-    public Book getBook(String title){
-        return books.get(title); // Ищет в коллекции books по названию title и выдает
+    public Book getBook(String title) {
+        return books.get(title);
     }
 }
