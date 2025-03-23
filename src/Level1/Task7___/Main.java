@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 public class Main {
     public static void main(String[] args) throws NegativeAmountException, AccountNotFoundException, InsufficientFundsException {
         Bank bank = new Bank();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         try {
             // Создание счетов

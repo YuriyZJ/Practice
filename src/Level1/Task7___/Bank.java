@@ -64,7 +64,7 @@ public class Bank {
         BankAccount toAccount = findAccount(toAccountId);
         try{
             fromAccount.withdraw(amount);
-            toAccount.withdraw(amount);
+            toAccount.deposit(amount);
             logOperation("TRANSFER", fromAccountId, amount, true);
         } catch (NegativeAmountException e) {
             logOperation("TRANSFER", fromAccountId, amount, false);
