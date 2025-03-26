@@ -1,4 +1,4 @@
-package Level2.Task3;
+package Level2.Chapter1.Task3;
 
 public class Main {
     public static void main(String[] args) {

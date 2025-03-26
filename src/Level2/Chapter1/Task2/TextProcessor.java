@@ -1,4 +1,4 @@
-package Level2.Task2;
+package Level2.Chapter1.Task2;
 
 public class TextProcessor {
     public void processText(String text){
