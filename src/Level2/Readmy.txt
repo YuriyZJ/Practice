@@ -239,3 +239,136 @@ Consumer забирает числа.
 Используя Jackson или Gson, сериализуйте и десериализуйте Person в JSON.
 Задача 2. Сеть и сериализация
 Напишите клиент-серверное приложение, передающее сериализованный объект Person через Socket.
+
+Тема 8. Юнит-тесты, тестирование с моками, исключения, поведение и валидации
+Уровень 1 — Начальный (JUnit Basics)
+Задача 1.1: Протестировать простую бизнес-логику
+Класс:
+public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+    public int subtract(int a, int b) {
+        return a - b;
+    }
+}
+Задача:
+Создай юнит-тесты, проверяющие корректность работы методов add() и subtract():
+- положительные числа;
+- отрицательные;
+- нули.
+Задача 1.2: Проверка исключения
+Класс:
+public class DivisionService {
+    public int divide(int a, int b) {
+        if (b == 0) throw new IllegalArgumentException("Divider can't be zero");
+        return a / b;
+    }
+}
+Задача:
+Напиши тест, который проверяет, что при делении на 0 выбрасывается IllegalArgumentException, а при корректном вводе возвращается правильный результат.
+
+Задача 1.3: Проверка метода isEven()
+Класс:
+public class NumberUtils {
+    public boolean isEven(int number) {
+        return number % 2 == 0;
+    }
+}
+Задача:
+Напиши параметризованный тест, который проверяет:
+	1.	Что метод возвращает true для чётных чисел (например: 2, 4, 10, 100).
+	2.	Что метод возвращает false для нечётных чисел (например: 1, 3, 5, 101).
+
+Уровень 2 — Средний (JUnit + Mockito Basics)
+Задача 2.1: Тест с заглушкой (Mockito)
+Классы:
+public interface UserRepository {
+    User findById(Long id);
+}
+
+public class UserService {
+    private final UserRepository repository;
+
+    public UserService(UserRepository repository) {
+        this.repository = repository;
+    }
+
+    public String getUserEmail(Long id) {
+        User user = repository.findById(id);
+        return user != null ? user.getEmail() : null;
+    }
+}
+Задача:
+Создай мок UserRepository с помощью Mockito. Напиши тест, который:
+- возвращает пользователя с email “test@example.com”;
+- проверяет, что email действительно вернулся;
+- проверяет, что метод findById() вызван с нужным id.
+Задача 2.2: Проверка взаимодействия
+Класс:
+public class NotificationService {
+    public void send(String message) {
+        System.out.println("Sending: " + message);
+    }
+}
+
+public class AlertManager {
+    private final NotificationService notificationService;
+
+    public AlertManager(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
+
+    public void sendAlert(String level) {
+        if ("HIGH".equals(level)) {
+            notificationService.send("High level alert!");
+        }
+    }
+}
+Задача:
+С помощью Mockito проверь, что при вызове sendAlert("HIGH") вызывается метод send(...) с нужным сообщением. Убедись, что при уровне "LOW" метод не вызывается.
+
+Уровень 3 — Продвинутый (Mockito Stubbing & Verification)
+Задача 3.1: Поведение при сложной логике
+Класс:
+public class OrderService {
+    private final PaymentGateway gateway;
+
+    public OrderService(PaymentGateway gateway) {
+        this.gateway = gateway;
+    }
+
+    public boolean placeOrder(Order order) {
+        if (order == null || order.getAmount() <= 0) return false;
+        return gateway.charge(order.getAmount());
+    }
+}
+Задача:
+Протестируй метод placeOrder():
+- Мокни PaymentGateway, чтобы он возвращал true;
+- Проверь, что метод charge() вызывается только если сумма заказа > 0;
+- Убедись, что заказ с нулевой или отрицательной суммой не приводит к вызову charge().
+Задача 3.2: Множественные вызовы и аргументы
+Класс:
+public class EmailSender {
+    public void sendEmail(String to, String subject, String body) {}
+}
+
+public class EmailService {
+    private final EmailSender sender;
+
+    public EmailService(EmailSender sender) {
+        this.sender = sender;
+    }
+
+    public void sendWelcomeEmails(List<String> emails) {
+        for (String email : emails) {
+            sender.sendEmail(email, "Welcome", "Hello, new user!");
+        }
+    }
+}
+Задача:
+- Создай мок EmailSender;
+- Проверь, что sendEmail() вызывается ровно столько раз, сколько email-ов;
+- Проверь, что каждый вызов был с нужными аргументами;
+- Добавь тест, где список email-ов пустой — и убедись, что sendEmail() не вызывается вообще.
