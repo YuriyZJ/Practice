@@ -10,9 +10,9 @@ public class GenericStack<T extends Comparable<T>> {
         stack.add(element);
     }
 
-    public T pop() {
+/*    public T pop() {
         return stack.removeFirst();
-    }
+    }*/
 
     public T getMax() {
         T max = stack.get(0);

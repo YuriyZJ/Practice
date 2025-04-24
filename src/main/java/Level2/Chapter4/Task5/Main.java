@@ -9,7 +9,7 @@ public class Main {
         stack.push(3);
         stack.push(4);
 
-        System.out.println(stack.pop());
+        //System.out.println(stack.pop());
 
         System.out.println(stack.getMax());
     }
