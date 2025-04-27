@@ -19,12 +19,15 @@ public class UserServiceTest {
     UserService service;
 
     @Test
-    void test(){
-        when(repo.findById(1L)).thenReturn(new User("test@example.com")); //Настрой поведение мока
+    void shouldReturnUserEmail_whenUserExists(){ //“задано, когда, тогда” (Given-When-Then).
+        // given — подготовили моки
+        when(repo.findById(1L)).thenReturn(new User("test@example.com")); //Настройка поведение мока
 
+        // when — выполнили действие
         String result = service.getUserEmail(1L);
         assertEquals(result, "test@example.com");
 
+        // then — проверили результат и поведение
         verify(repo).findById(1L);
     }
 }
