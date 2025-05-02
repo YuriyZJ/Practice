@@ -1,4 +1,4 @@
-package Level2.Chapter8.Task2_2;
+package Level2.Chapter8_Tests.Task2_2;
 
 public class AlertManager {
     private final NotificationService notificationService;

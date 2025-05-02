@@ -1,4 +1,4 @@
-package Level2.Chapter8.Task1_1;
+package Level2.Chapter8_Tests.Task1_1;
 
 public class Calculator {
     public int add(int a, int b) {

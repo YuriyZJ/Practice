@@ -1,9 +1,7 @@
-package Level2.Chapter8.Task1_2;
+package Level2.Chapter8_Tests.Task1_2;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import java.lang.reflect.Executable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

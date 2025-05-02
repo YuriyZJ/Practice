@@ -1,4 +1,4 @@
-package Level2.Chapter8.Task1_2;
+package Level2.Chapter8_Tests.Task1_2;
 
 public class DivisionService {
     public int divide(int a, int b) {

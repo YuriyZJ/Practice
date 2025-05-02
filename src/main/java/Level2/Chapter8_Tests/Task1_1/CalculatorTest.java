@@ -1,4 +1,4 @@
-package Level2.Chapter8.Task1_1;
+package Level2.Chapter8_Tests.Task1_1;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

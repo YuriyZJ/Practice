@@ -1,0 +1,7 @@
+1. Создай проект с классами:
+- Engine (бин)
+- Car (внедрение Engine тремя способами: через конструктор, поле и сеттер — в разных файлах)
+2. Добавь @PostConstruct и @PreDestroy для Car.
+3. Сделай два бина:
+- Один со @Scope("singleton")
+- Другой с @Scope("prototype") — и получи его дважды, сравни по System.identityHashCode().

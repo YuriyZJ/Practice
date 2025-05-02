@@ -1,4 +1,4 @@
-package Level2.Chapter8.Task3_2;
+package Level2.Chapter8_Tests.Task3_2;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
