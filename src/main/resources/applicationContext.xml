@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Объявляем бин Engine -->
+    <bean id="engine" class="Level2.Chapter9_Spring.Task2_2.Engine"/>
+
+    <!-- Объявляем бин Car и внедряем зависимость engine -->
+    <bean id="car" class="Level2.Chapter9_Spring.Task2_2.Car">
+        <property name="engine" ref="engine"/>
+    </bean>
+</beans>
+
+<!-- XML-конфигурация использует сеттеры по умолчанию.-->

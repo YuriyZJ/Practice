@@ -1,4 +1,4 @@
-package Level2.Chapter9_Spring.Task2;
+package Level2.Chapter9_Spring.Task2_1;
 
 import org.springframework.stereotype.Component;
 

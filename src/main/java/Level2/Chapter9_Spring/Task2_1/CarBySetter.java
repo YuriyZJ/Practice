@@ -1,4 +1,4 @@
-package Level2.Chapter9_Spring.Task2;
+package Level2.Chapter9_Spring.Task2_1;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -15,7 +15,7 @@ public class CarBySetter {
     }
 
     public void drive(){
-        System.out.println("CarBySetter drive " + engine.sound());
+        System.out.println("CarBySetter driving + " + engine.sound());
     }
 
     @PostConstruct
