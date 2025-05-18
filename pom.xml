@@ -20,6 +20,13 @@
     </properties>
 
     <dependencies>
+
+        <!-- JPA -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
         <!-- Основной Spring Boot стартер для Web-приложений -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

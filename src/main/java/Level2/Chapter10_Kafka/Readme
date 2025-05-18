@@ -1,0 +1,42 @@
+Общий план обучения Kafka и RabbitMQ
+Шаг 1. Введение и сравнение (день 1)
+Цель: Понять, зачем нужны Kafka и RabbitMQ, в чём разница.
+Что такое брокер сообщений (message broker)?
+Зачем используются очереди, publish/subscribe и обработка событий?
+Kafka vs RabbitMQ: когда что использовать?
+
+Шаг 2. Установка и запуск (день 2)
+Установить Kafka (через Docker или вручную).
+Установить RabbitMQ.
+GUI-интерфейсы: Kafka Tool, RabbitMQ Management UI.
+Первый запуск, подключение и администрирование.
+
+Шаг 3. Работа с Kafka: теория и практика (день 3–6)
+Основные понятия:
+Producer, Consumer, Topic, Partition, Offset
+Как работает Kafka под капотом
+Java-пример:
+Отправка сообщений в Kafka
+Чтение сообщений из Kafka
+Настройка application.yml
+Error handling, retries, idempotence
+
+Шаг 4. Работа с RabbitMQ: теория и практика (день 7–9)
+Основные понятия:
+Producer, Consumer, Exchange, Queue, Routing Key, Binding
+Типы обменников: direct, topic, fanout
+Java-пример:
+Создание очередей
+Отправка/получение сообщений
+Использование Spring AMQP
+
+Шаг 5. Практика: мини-проект (день 10–11)
+Пример: регистрация пользователей с отправкой сообщений в очередь
+Отправка e-mail или логгирование через очереди
+Переключение между Kafka и RabbitMQ
+
+Шаг 6. Продвинутые темы (день 12–14)
+Устойчивость: durable queues, message acknowledgment
+Производительность и масштабирование
+Dead Letter Queue, Retry Pattern
+Мониторинг (Prometheus + Grafana)
