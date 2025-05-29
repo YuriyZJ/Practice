@@ -1,0 +1,85 @@
+- SELECT, WHERE, HAVING, GROUP BY, ORDER BY, LIMIT
+- JOIN, INNER JOIN, LEFT JOIN, UNION, DISTINCT
+- агрегатные функции (COUNT, SUM, AVG, MAX, MIN)
+- подзапросы и фильтрация (IN, NOT IN, EXISTS, BETWEEN)
+- логические операторы (AND, OR, NOT, LIKE)
+- сортировка и ограничение результатов
+
+1. Популярные товары
+Таблицы
+- products(id, name)
+- order_items(order_id, product_id, quantity)
+Задание:
+Вывести name 5 самых популярных товаров (по сумме количества), отсортированных по убыванию, где общее количество проданного товара больше 100.
+Используется: JOIN, GROUP BY, HAVING, ORDER BY, LIMIT.
+
+2. Самые прибыльные категории
+Таблицы
+- categories(id, name)
+- products(id, category_id, price)
+- order_items(order_id, product_id, quantity)
+Задание:
+Вывести 3 категории, принёсшие наибольшую выручку. Указать название и сумму выручки (price * quantity).
+Используется: JOIN, GROUP BY, SUM, ORDER BY, LIMIT.
+
+3. Активные клиенты
+Таблицы
+- customers(id, name)
+- orders(id, customer_id, created_at)
+Задание:
+Вывести клиентов, сделавших больше 3 заказов за последний месяц.
+Используется: WHERE, JOIN, GROUP BY, HAVING, COUNT.
+
+4. Средний чек по клиентам
+Таблицы
+- orders(id, customer_id, amount)
+- customers(id, name)
+Задание:
+Для каждого клиента вывести его имя и средний чек, отсортировать по убыванию среднего чека.
+Используется: GROUP BY, AVG, ORDER BY.
+
+5. Список клиентов без заказов
+Таблицы
+- customers(id, name)
+- orders(id, customer_id)
+Задание:
+Вывести список клиентов, у которых нет ни одного заказа.
+Используется: LEFT JOIN, WHERE, IS NULL.
+
+6. Все поставки и заказы
+Таблицы
+- deliveries(id, date)
+- orders(id, date)
+Задание:
+Вывести даты всех операций (и заказов, и поставок), отсортировать по убыванию, без повторений.
+Используется: UNION, ORDER BY, DISTINCT.
+
+7. Поиск по email
+Таблица
+- users(id, name, email)
+Задание:
+Найти всех пользователей, у которых email заканчивается на @gmail.com.
+Используется: SELECT, WHERE, LIKE.
+
+8. Заказы за промежуток
+Таблица
+- orders(id, customer_id, created_at, amount)
+Задание:
+Вывести заказы, сделанные между '2024-01-01' и '2024-03-01' и сумма которых выше среднего значения по всем заказам.
+Используется: WHERE, BETWEEN, подзапрос в WHERE.
+
+9. Клиенты, у которых есть заказы на большую сумму
+Таблицы
+- customers(id, name)
+- orders(id, customer_id, amount)
+Задание:
+Вывести имена клиентов, у которых есть хотя бы один заказ на сумму больше 1000.
+Используется: EXISTS, WHERE, подзапрос.
+
+10. Заказы и их количество товаров
+Таблицы
+- orders(id, created_at)
+- order_items(order_id, product_id, quantity)
+Задание:
+Вывести ID заказа, дату и количество разных товаров в заказе. Только те заказы, где товаров больше 3.
+Используется: JOIN, GROUP BY, COUNT(DISTINCT ...), HAVING.
