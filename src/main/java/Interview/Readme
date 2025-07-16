@@ -1,0 +1,480 @@
+SQL
+- SELECT, WHERE, HAVING, GROUP BY, ORDER BY, LIMIT
+- JOIN, INNER JOIN, LEFT JOIN, UNION, DISTINCT
+- агрегатные функции (COUNT, SUM, AVG, MAX, MIN)
+- подзапросы и фильтрация (IN, NOT IN, EXISTS, BETWEEN)
+- логические операторы (AND, OR, NOT, LIKE)
+- сортировка и ограничение результатов
+
+1. Популярные товары
+Таблицы
+- products(id, name)
+- order_items(order_id, product_id, quantity)
+Задание:
+Вывести name 5 самых популярных товаров (по сумме количества), отсортированных по убыванию, где общее количество проданного товара больше 100.
+Используется: JOIN, GROUP BY, HAVING, ORDER BY, LIMIT.
+
+2. Самые прибыльные категории
+Таблицы
+- categories(id, name)
+- products(id, category_id, price)
+- order_items(order_id, product_id, quantity)
+Задание:
+Вывести 3 категории, принёсшие наибольшую выручку. Указать название и сумму выручки (price * quantity).
+Используется: JOIN, GROUP BY, SUM, ORDER BY, LIMIT.
+
+3. Активные клиенты
+Таблицы
+- customers(id, name)
+- orders(id, customer_id, created_at)
+Задание:
+Вывести клиентов, сделавших больше 3 заказов за последний месяц.
+Используется: WHERE, JOIN, GROUP BY, HAVING, COUNT.
+
+4. Средний чек по клиентам
+Таблицы
+- orders(id, customer_id, amount)
+- customers(id, name)
+Задание:
+Для каждого клиента вывести его имя и средний чек, отсортировать по убыванию среднего чека.
+Используется: GROUP BY, AVG, ORDER BY.
+
+5. Список клиентов без заказов
+Таблицы
+- customers(id, name)
+- orders(id, customer_id)
+Задание:
+Вывести список клиентов, у которых нет ни одного заказа.
+Используется: LEFT JOIN, WHERE, IS NULL.
+
+6. Все поставки и заказы
+Таблицы
+- deliveries(id, date)
+- orders(id, date)
+Задание:
+Вывести даты всех операций (и заказов, и поставок), отсортировать по убыванию, без повторений.
+Используется: UNION, ORDER BY, DISTINCT.
+
+7. Поиск по email
+Таблица
+- users(id, name, email)
+Задание:
+Найти всех пользователей, у которых email заканчивается на @gmail.com.
+Используется: SELECT, WHERE, LIKE.
+
+8. Заказы за промежуток
+Таблица
+- orders(id, customer_id, created_at, amount)
+Задание:
+Вывести заказы, сделанные между '2024-01-01' и '2024-03-01' и сумма которых выше среднего значения по всем заказам.
+Используется: WHERE, BETWEEN, подзапрос в WHERE.
+
+9. Клиенты, у которых есть заказы на большую сумму
+Таблицы
+- customers(id, name)
+- orders(id, customer_id, amount)
+Задание:
+Вывести имена клиентов, у которых есть хотя бы один заказ на сумму больше 1000.
+Используется: EXISTS, WHERE, подзапрос.
+
+10. Заказы и их количество товаров
+Таблицы
+- orders(id, created_at)
+- order_items(order_id, product_id, quantity)
+Задание:
+Вывести ID заказа, дату и количество разных товаров в заказе. Только те заказы, где товаров больше 3.
+Используется: JOIN, GROUP BY, COUNT(DISTINCT ...), HAVING.
+
+Многопоточность
+Вот подборка 10 классических и эффективных задач по многопоточности (на основе принципа “пинг-понг”), которые часто встречаются на собеседованиях. Каждая из них тренирует ключевые аспекты работы с потоками в Java: synchronized, wait/notify, ReentrantLock, Condition, Semaphore, volatile, Atomic, Thread, ExecutorService, CountDownLatch, CyclicBarrier и др.
+1. Пинг-Понг (2 потока, поочередный вывод)
+Цель: Создать два потока — один выводит Ping, другой Pong, поочередно.
+Ожидаемый вывод: Ping, Pong, Ping, Pong, …
+Используется: synchronized + wait/notify.
+
+2. Чередование чисел и букв (2 потока)
+Цель: Один поток выводит буквы A-Z, другой — числа 1–26.
+Ожидаемый вывод: A1B2C3D4...Z26
+Используется: ReentrantLock + Condition или wait/notify.
+
+3. 3 потока по кругу (ABCABCABC…)
+Цель: Три потока, каждый выводит свою букву: A, B, C — поочередно.
+Ожидаемый вывод: ABCABCABC...
+Используется: modulo логика + synchronized/wait/notify.
+
+4. Поток печатает чётные, другой нечётные
+Цель: Один поток печатает чётные числа, второй — нечётные.
+Ожидаемый вывод: 1 2 3 4 5 6...
+Используется: volatile, AtomicInteger, synchronized.
+
+5. 10 потоков увеличивают общий счётчик
+Цель: Все потоки увеличивают один int counter до 1000.
+Используется: AtomicInteger или synchronized.
+
+6. Барьер синхронизации
+Цель: 5 потоков выполняют задачу, но каждый ждёт остальных перед следующим шагом.
+Используется: CyclicBarrier.
+
+7. Поток ждёт окончания других
+Цель: Главный поток запускает 5 потоков и ждёт их завершения.
+Используется: CountDownLatch.
+
+8. Producer–Consumer (производитель-потребитель)
+Цель: Один поток добавляет элементы в очередь, другой — забирает.
+Используется: BlockingQueue, либо ручная реализация с wait/notify.
+
+9. Пинг-Понг с Semaphore
+Цель: Повторить задачу 1, но использовать Semaphore вместо synchronized.
+Отлично демонстрирует альтернативную синхронизацию.
+
+10. Параллельная сортировка частей массива
+Цель: Разбить массив на 4 части, отсортировать каждую в потоке и объединить.
+Используется: ExecutorService, Callable, Future.
+
+Алгоритмические задачи
+Отличный выбор — алгоритмические задачи на собеседованиях часто берутся из тем типа “палиндром”, “анаграмма”, “поиск”, “массивы”, “строки”, “стек”, “рекурсия”, “жадные” и т.д. Вот 10 задач, которые помогут отточить основные навыки и часто встречаются на технических интервью для Java-разработчиков.
+
+1. Палиндром (строка)
+Условие: Напиши метод boolean isPalindrome(String s), который проверяет, является ли строка палиндромом (читается одинаково слева направо и справа налево).
+Пример: "madam" → true, "step on no pets" → true
+
+2. Анаграмма (сравнение строк)
+Условие: Напиши метод boolean isAnagram(String s1, String s2), который проверяет, являются ли строки анаграммами (одинаковый состав букв, порядок не важен).
+Пример: "listen" и "silent" → true
+
+3. Самое частое слово в строке
+Условие: Дан текст. Найди слово, которое встречается чаще всего.
+Пример: "apple banana apple orange apple" → apple
+
+4. Сумма двух чисел (Two Sum)
+Условие: Дан массив int[] nums и число target. Найди индексы двух чисел, сумма которых равна target.
+Пример: [2, 7, 11, 15], target = 9 → [0,1]
+
+5. Реверс строки и массива
+Условие: Реализуй разворот строки String reverse(String s) и массива int[] reverse(int[]).
+
+6. Уникальные символы в строке
+Условие: Напиши метод boolean hasUniqueChars(String s), который возвращает true, если все символы в строке уникальны.
+Пример: "abcde" → true, "abca" → false
+
+7. Сбалансированные скобки
+Условие: Напиши метод boolean isValidBrackets(String s) для строки со скобками ()[]{}.
+Пример: "([{}])" → true, "([)]" → false
+Используется: стек
+
+8. Найти первое неповторяющееся число/символ
+Условие: Напиши метод char firstNonRepeatingChar(String s)
+Пример: "aabbcddef" → 'c'
+
+9. Максимальная сумма подмассива (Kadane’s Algorithm)
+Условие: Дан массив целых чисел. Найди непрерывный подмассив с максимальной суммой.
+Пример: [−2,1,−3,4,−1,2,1,−5,4] → 6 (подмассив [4,−1,2,1])
+
+10. Поиск подстроки (без использования .contains)
+Условие: Реализуй метод boolean contains(String haystack, String needle) — возвращает true, если needle содержится в haystack.
+
+Stream API
+Вот 10 классических задач по теме Java Stream API, которые часто задают на собеседованиях уровня Junior/Middle. Все задачи предназначены для практики основных операций: filter, map, collect, reduce, sorted, distinct, flatMap, groupingBy и др.
+1. Отфильтровать список строк
+Условие: Дано List<String> names. Верни только те строки, которые начинаются с заглавной буквы.
+Ожидается: filter()
+
+2. Преобразовать список чисел в строки
+Условие: Дано List<Integer> numbers. Верни List<String>, где каждый элемент — это "Число: X".
+Ожидается: map()
+
+3. Найти среднее значение
+Условие: Дано List<Integer>. Верни среднее арифметическое.
+Ожидается: mapToInt().average()
+
+4. Сгруппировать пользователей по возрасту
+Условие: Есть List<User> с полями name и age. Верни Map<Integer, List<User>>, где ключ — возраст.
+Ожидается: collect(groupingBy(...))
+
+5. Найти первое подходящее значение
+Условие: В списке чисел найти первое число, большее 100.
+Ожидается: filter().findFirst()
+
+6. Подсчитать количество уникальных элементов
+Условие: Дано List<String>. Верни количество уникальных слов.
+Ожидается: distinct().count()
+
+7. Отсортировать строки по длине в обратном порядке
+Условие: List<String>. Верни список, отсортированный по длине строки, убыванию.
+Ожидается: sorted(Comparator.comparingInt(...).reversed())
+
+8. Объединить все строки в одну
+Условие: List<String>. Верни одну строку, объединённую через запятую.
+Ожидается: collect(Collectors.joining(", "))
+
+9. Расплющить список списков
+Условие: List<List<String>>. Преобразуй в List<String> — один список.
+Ожидается: flatMap(List::stream)
+
+10. Найти максимальный элемент по полю
+Условие: Есть List<Product> с полями name, price. Найди товар с максимальной ценой.
+Ожидается: max(Comparator.comparing(...))
+
+Готово. Я перевёл все 10 задач по Stream API в формат JUnit-тестов. Они находятся в документе Stream Api Junit Tests и охватывают:
+фильтрацию;
+отображение (map);
+агрегацию (average, count);
+группировку (groupingBy);
+сортировку;
+distinct, flatMap, joining, max, findFirst.
+
+Если нужно — могу добавить тесты по другим темам, или сгенерировать аналогичные наборы по SQL/многопоточности/алгоритмам.
+import org.junit.jupiter.api.Test;
+
+import java.util.*;
+import java.util.stream.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class StreamApiPracticeTest {
+
+    @Test
+    void testFilterCapitalized() {
+        List<String> names = List.of("John", "alice", "Bob", "mary");
+        List<String> result = names.stream()
+                .filter(s -> Character.isUpperCase(s.charAt(0)))
+                .collect(Collectors.toList());
+
+        assertEquals(List.of("John", "Bob"), result);
+    }
+
+    @Test
+    void testMapNumbersToStrings() {
+        List<Integer> numbers = List.of(1, 2, 3);
+        List<String> result = numbers.stream()
+                .map(n -> "Число: " + n)
+                .collect(Collectors.toList());
+
+        assertEquals(List.of("Число: 1", "Число: 2", "Число: 3"), result);
+    }
+
+    @Test
+    void testAverageValue() {
+        List<Integer> numbers = List.of(10, 20, 30);
+        double avg = numbers.stream()
+                .mapToInt(i -> i)
+                .average()
+                .orElse(0);
+
+        assertEquals(20.0, avg);
+    }
+
+    @Test
+    void testGroupUsersByAge() {
+        record User(String name, int age) {}
+        List<User> users = List.of(
+                new User("Alice", 20),
+                new User("Bob", 30),
+                new User("Charlie", 20)
+        );
+
+        Map<Integer, List<User>> result = users.stream()
+                .collect(Collectors.groupingBy(User::age));
+
+        assertEquals(2, result.get(20).size());
+        assertEquals(1, result.get(30).size());
+    }
+
+    @Test
+    void testFindFirstGreaterThan100() {
+        List<Integer> numbers = List.of(10, 101, 50);
+        int first = numbers.stream()
+                .filter(n -> n > 100)
+                .findFirst()
+                .orElse(-1);
+
+        assertEquals(101, first);
+    }
+
+    @Test
+    void testCountUniqueWords() {
+        List<String> words = List.of("apple", "banana", "apple", "orange");
+        long count = words.stream()
+                .distinct()
+                .count();
+
+        assertEquals(3, count);
+    }
+
+    @Test
+    void testSortStringsByLengthDesc() {
+        List<String> input = List.of("a", "abcd", "abc");
+        List<String> result = input.stream()
+                .sorted(Comparator.comparingInt(String::length).reversed())
+                .collect(Collectors.toList());
+
+        assertEquals(List.of("abcd", "abc", "a"), result);
+    }
+
+    @Test
+    void testJoinStrings() {
+        List<String> words = List.of("apple", "banana", "orange");
+        String result = words.stream()
+                .collect(Collectors.joining(", "));
+
+        assertEquals("apple, banana, orange", result);
+    }
+
+    @Test
+    void testFlattenList() {
+        List<List<String>> nested = List.of(
+                List.of("a", "b"),
+                List.of("c"),
+                List.of("d", "e")
+        );
+
+        List<String> result = nested.stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+
+        assertEquals(List.of("a", "b", "c", "d", "e"), result);
+    }
+
+    @Test
+    void testFindMaxProductByPrice() {
+        record Product(String name, double price) {}
+        List<Product> products = List.of(
+                new Product("A", 10.0),
+                new Product("B", 20.0),
+                new Product("C", 15.0)
+        );
+
+        Product max = products.stream()
+                .max(Comparator.comparing(Product::price))
+                .orElse(null);
+
+        assertNotNull(max);
+        assertEquals("B", max.name());
+    }
+}
+
+Рефакторингу кода
+Вот 10 задач по  — это частые “ловушки” на собеседованиях. Они связаны с пониманием наследования, модификаторов доступа, аннотаций, структуры классов, дублирования, и других ключевых моментов, которые проверяют на Junior/Middle уровнях.
+
+1. Ненужное наследование
+class Animal {
+    void eat() { System.out.println("eating"); }
+}
+
+class Dog extends Animal {
+    void eat() { System.out.println("dog eating"); }
+}
+
+class RobotDog extends Dog {
+    void eat() { System.out.println("robot charging"); }
+}
+Задача: отрефакторить. Нужно ли RobotDog наследоваться от Dog?
+
+2. Слишком общий модификатор
+class BankAccount {
+    public double balance;
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
+}
+Задача: исправь нарушения инкапсуляции. Сделай balance защищённым или приватным, добавь getter/setter при необходимости.
+
+3. @Override отсутствует — поведение сломано
+class Parent {
+    void print() {
+        System.out.println("Parent");
+    }
+}
+
+class Child extends Parent {
+    void print() {
+        System.out.println("Child");
+    }
+}
+Задача: где ошибка? Добавь аннотацию @Override. Проверь, действительно ли метод переопределяется.
+
+4. Мёртвый код / Неиспользуемые поля
+class User {
+    private String name;
+    private int age;
+    private boolean isAdmin;
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+Задача: убери неиспользуемое поле isAdmin, если оно не нужно, или добавь использование.
+
+5. Прямой вызов конструктора в наследнике
+class Vehicle {
+    String model;
+    public Vehicle(String model) {
+        this.model = model;
+    }
+}
+
+class Car extends Vehicle {
+    String engine;
+
+    public Car(String model, String engine) {
+        this.model = model;
+        this.engine = engine;
+    }
+}
+Задача: отрефакторь. Используй super(model).
+
+6. Нарушение принципа единой ответственности
+class Order {
+    void calculateTotal() { /* ... */ }
+    void saveToDatabase() { /* ... */ }
+}
+Задача: Раздели классы: логика расчёта и логика сохранения должны быть в разных классах.
+
+7. Переопределение equals без hashCode
+class Book {
+    String title;
+    @Override
+    public boolean equals(Object o) {
+        return title.equals(((Book)o).title);
+    }
+}
+Задача: реализуй hashCode, если переопределяешь equals.
+
+8. Неправильное использование final
+class Config {
+    public final String apiUrl = "http://localhost";
+
+    void updateUrl(String newUrl) {
+        apiUrl = newUrl;
+    }
+}
+Задача: этот код не скомпилируется. Исправь ошибку.
+
+9. Ошибка доступа к protected-полям
+class A {
+    protected int number = 42;
+}
+
+class B {
+    void show() {
+        A a = new A();
+        System.out.println(a.number);
+    }
+}
+Задача: объясни, почему protected не работает здесь. Как исправить?
+
+10. Дублирование кода
+class Invoice {
+    double calculateDiscount(double amount) {
+        return amount * 0.1;
+    }
+}
+
+class Bill {
+    double calculateDiscount(double amount) {
+        return amount * 0.1;
+    }
+}
+Задача: выдели общий метод в утилитный класс.
